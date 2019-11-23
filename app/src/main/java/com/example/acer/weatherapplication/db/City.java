@@ -1,14 +1,16 @@
 package com.example.acer.weatherapplication.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by acer on 2019/11/18.
  */
 
 public class City extends DataSupport {
-    private int id;
-    private String cityName;
-    private int cityCode;
-    private int provinceId;
+    private int id;//城市的id
+    private String cityName;//城市的名字
+    private int cityCode;//城市的代号
+    private int provinceId;//城市所在省的id
     public int getId(){
         return id;
     }
