@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.example.acer.weatherapplication.db.City;
 import com.example.acer.weatherapplication.db.County;
 import com.example.acer.weatherapplication.db.Province;
+import com.example.acer.weatherapplication.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,5 +85,22 @@ public class Utility {
             }
         }
         return  false;
+    }
+
+    /**
+     * 添加一个用于解析天气JSON数据的方法，将返回的JSON数据解析成Weather实体类
+     */
+    public static Weather handleWeatherResponse(String response){
+        try {
+            //先通过JSONObject和JSONArray将天气数据中的主体内容解析出来，
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            //已经按照数据格式定义了GSON实体类，因此只需要通过调用fromJson()方法就能直接将JSON数据转化成Weather对象了
+            return new Gson().fromJson(weatherContent,Weather.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

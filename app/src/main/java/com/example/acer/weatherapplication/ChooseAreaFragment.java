@@ -2,6 +2,7 @@ package com.example.acer.weatherapplication;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
@@ -87,6 +88,14 @@ public class ChooseAreaFragment extends Fragment {
                 } else if(currentLevel == LEVEL_CITY){//当前选中级别为市级
                     selectedCity = cityList.get(position);//把该实际对象几位被选中的市
                     queryCounties();//然后调用方法查询该市下属的县
+                }else if (currentLevel == LEVEL_COUNTY){
+                    //在onItemClick()方法中加入一个if判断，如果当前级别是县级，就启动WeatherActivity
+                    //并把当前选中县的天气id传递过去
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
