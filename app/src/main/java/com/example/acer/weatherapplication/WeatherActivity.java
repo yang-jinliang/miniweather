@@ -1,12 +1,16 @@
 package com.example.acer.weatherapplication;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ScrollingView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -40,10 +44,23 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView comfortText;
     private TextView carWashText;
     private TextView sportText;
+    private FrameLayout frameLayout;
+
+    //背景图片组件
+    private ImageView bgImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //实现背景图和状态栏融合
+        if (Build.VERSION.SDK_INT >= 21){
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            );
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         setContentView(R.layout.activity_weather);
         //初始化各控件，获取各控件实例
         weatherLayout = (ScrollView) findViewById(R.id.weather_layout);
@@ -57,6 +74,9 @@ public class WeatherActivity extends AppCompatActivity {
         comfortText = (TextView) findViewById(R.id.comfort_text);
         carWashText = (TextView) findViewById(R.id.car_wash_text);
         sportText = (TextView) findViewById(R.id.sport_text);
+        frameLayout = (FrameLayout) findViewById(R.id.show);
+
+        //bgImg = (ImageView) findViewById(R.id.bg_img);
 
         //尝试从本地缓存中读取天气数据
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -74,6 +94,14 @@ public class WeatherActivity extends AppCompatActivity {
             //请求数据时要先将ScrollView界面进行隐藏，不然就会呈现奇怪的空数据界面
             requestWeather(weatherId);
         }
+
+//        //设置背景图片
+//        if (weatherInfoText.toString().equals("晴")){
+//            bgImg.setImageResource(R.drawable.daysun);
+//        }
+//        if (weatherInfoText.toString().equals("多云")){
+//            bgImg.setImageResource(R.drawable.cloud);
+//        }
     }
 
     /**
@@ -165,6 +193,21 @@ public class WeatherActivity extends AppCompatActivity {
         comfortText.setText(comfort);
         carWashText.setText(carWash);
         sportText.setText(sport);
+
+        //设置背景图片
+        if (("晴").equals(weatherInfo)){
+           frameLayout.setBackgroundResource(R.drawable.daysun);
+        }
+       if (("多云").equals(weatherInfo) || ("多云转晴").equals(weatherInfo) || ("多云转阴").equals(weatherInfo)){
+            frameLayout.setBackgroundResource(R.drawable.cloud);
+       }
+        if (("阴").equals(weatherInfo) || ("阴转多云").equals(weatherInfo)){
+            frameLayout.setBackgroundResource(R.drawable.ying);
+        }
+        if (("小雪").equals(weatherInfo) || ("中雪").equals(weatherInfo) || ("大雪").equals(weatherInfo)){
+
+        }
+
         //设置完成所有的布局后，将ScrollView变可见
         weatherLayout.setVisibility(View.VISIBLE);
     }
