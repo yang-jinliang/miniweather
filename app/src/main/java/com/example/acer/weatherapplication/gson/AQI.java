@@ -11,5 +11,6 @@ public class AQI {
         //city中也有具体内容，分别是aqi和pm25
         public String aqi;
         public String pm25;
+        public String qlty;
     }
 }

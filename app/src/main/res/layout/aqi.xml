@@ -4,17 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    android:background="#8000">
+    android:background="#8bffffff">
     <!--空气质量信息布局-->
     <!--先定义了一个半透明的LinearLayout背景，然后使用TextView定义了一个标题-->
 
     <TextView
+        android:id="@+id/air_quality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:text="空气质量"
-        android:textColor="#fff"
+        android:textColor="#000000"
         android:textSize="20sp"/>
 
     <!--使用LinearLayout和RelativeLayout嵌套的方式实现一个左右平分并且居中对齐的布局，
@@ -35,12 +36,18 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true">
 
+                <ImageView
+                    android:id="@+id/aqi_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="85sp"
+                    />
+
                 <TextView
                     android:id="@+id/aqi_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textColor="#fff"
+                    android:textColor="#000000"
                     android:textSize="40sp"/>
 
                 <TextView
@@ -48,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="AQI指数"
-                    android:textColor="#fff"/>
+                    android:textColor="#000000"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -63,12 +70,17 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true">
 
+                <ImageView
+                    android:id="@+id/pm25_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="85sp" />
+
                 <TextView
                     android:id="@+id/pm25_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textColor="#fff"
+                    android:textColor="#000000"
                     android:textSize="40sp"/>
 
                 <TextView
@@ -76,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="PM2.5指数"
-                    android:textColor="#fff"/>
+                    android:textColor="#000000"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

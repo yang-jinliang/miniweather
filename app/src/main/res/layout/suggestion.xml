@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    android:background="#8000">
+    android:background="#8bffffff">
     <!--同样是设置一个半透明的背景和标题，然后下面使用3个TextView
     分别用于显示舒适度、洗车指数，运动建议的相关数据-->
 
@@ -14,27 +14,116 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:text="生活建议"
-        android:textColor="#fff"
+        android:textColor="#000000"
         android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/comfort_text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff"/>
+        android:orientation="vertical"
+        >
 
-    <TextView
-        android:id="@+id/car_wash_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp">
+            <ImageView
+                android:id="@+id/comf_show"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="10sp"
+                />
 
-    <TextView
-        android:id="@+id/sport_text"
-        android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/comf_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_gravity="center"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/comfort_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff"/>
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            >
+            <ImageView
+                android:id="@+id/carw_show"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="10sp"
+                />
+
+            <TextView
+                android:id="@+id/carw_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_gravity="center"
+                android:textColor="#000000"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/car_wash_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp">
+
+            <ImageView
+                android:id="@+id/sport_show"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="10sp"
+                />
+
+            <TextView
+                android:id="@+id/sport_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_gravity="center"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/sport_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8sp"
+            />
+    </LinearLayout>
 </LinearLayout>

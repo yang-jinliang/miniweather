@@ -19,15 +19,21 @@ public class Suggestion {
     public class Comfort{
         @SerializedName("txt")
         public String info;//对应comf中的文本，内容为感受提示信息
+
+        public String brf;
     }
 
     public class CarWash{
         @SerializedName("txt")
         public String info;//对应cw中的文本，内容为洗车天气提示
+
+        public String brf;
     }
 
     public class Sport{
         @SerializedName("txt")
         public String info;//对应sport中的文本，内容为运动提示
+
+        public String brf;
     }
 }

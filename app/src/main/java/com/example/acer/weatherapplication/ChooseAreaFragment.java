@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.acer.weatherapplication.db.City;
 import com.example.acer.weatherapplication.db.County;
 import com.example.acer.weatherapplication.db.Province;
+import com.example.acer.weatherapplication.gson.Weather;
 import com.example.acer.weatherapplication.util.HttpUtil;
 import com.example.acer.weatherapplication.util.Utility;
 
@@ -92,10 +93,20 @@ public class ChooseAreaFragment extends Fragment {
                     //在onItemClick()方法中加入一个if判断，如果当前级别是县级，就启动WeatherActivity
                     //并把当前选中县的天气id传递过去
                     String weatherId = countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+
+                    //写进滑动菜单
+                    if (getActivity() instanceof MainActivity){
+                        Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                        intent.putExtra("weather_id",weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if (getActivity() instanceof WeatherActivity){
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });
